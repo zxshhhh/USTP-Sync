@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar-container {
+    top: 0;
+    left: 0;
+    display: block;
+    position: fixed;
+    height: 100px;
+    width: 100vw;
+    background-color: rgb(255, 255, 255);
+}
