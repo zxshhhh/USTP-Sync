@@ -1,0 +1,174 @@
+* {
+    font-family: Poppins, sans-serif ;
+    transition: all 0.2s ease-in-out;
+}
+
+.main-page-content {
+    margin-top: 10%;
+}
+
+.introduction-section {
+    display: flex;
+    margin-left: 10%;
+}
+
+.introduction-section h2 {
+    color: white;
+    font-size: 60px;
+    font-weight: 10;
+}
+
+.introduction-section p {
+    color: white;
+    font-size: 25px;
+    font-weight: 50;
+    margin: 15px;
+    margin-left: 90px;
+
+    width: 600px;
+    height: auto;
+    padding: 10px;
+    display: block;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+.introduction-video {
+    height: 400px;
+    border-radius: 20px;
+    margin-left: 80px;
+    margin-top: 50px;
+}
+
+.why-sync-section {
+    margin-top: 190px;
+}
+
+.why-sync-section h2 {
+    color: white;
+    font-size: 60px;
+    font-weight: 10;
+    margin-left: 10%;
+}
+
+.why-sync-section p {
+    color: white;
+    font-size: 25px;
+    font-weight: 150;
+    margin: 15px;
+    width: auto;
+    padding: 10px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    justify-self: center;
+}
+
+.p1 p {
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 100;
+    margin: 30px;
+    margin-left: 90px;
+    width: 75%;
+    padding: 10px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    margin-left: 10%;
+    justify-self: left;
+}
+
+.card-container {
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.topcard-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: white;
+    padding: 20px;
+    justify-self: center;
+    text-align: center;
+    justify-items: center;
+    user-select: none;
+}
+
+.topcard {
+    border: 2px solid white;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    height: 150px;
+    align-content: center;
+}
+
+.topcard:hover {
+    filter: drop-shadow(0 0 15px #ffffff);
+    transform: scale(1.05);
+}
+
+.botcard-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+    padding: 20px;
+    justify-self: center;
+    text-align: center;
+    user-select: none;
+}
+
+.botcard {
+    align-content: center;
+    border: 2px solid white;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    height: 150px;
+}
+
+.botcard:hover {
+    filter: drop-shadow(0 0 15px #ffffff);
+    transform: scale(1.05);
+}
+
+.services-api-section {
+    color: white;
+    margin-top: 150px;
+    text-align: center;
+    align-self: center;
+}
+
+.services-container {
+    font-size: 40px;
+}
+
+.services-api {
+    font-weight: 60px;
+}
+
+.api-content {
+    display: flex;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 20px;
+    justify-content: center;
+    justify-self: center;
+    width: 1300px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.services-card {
+    border: 2px solid white;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    height: 100px;
+    align-content: center;
+}
+
+.services-card:hover {
+    filter: drop-shadow(0 0 15px #ffffff);
+    transform: scale(1.05);
+}

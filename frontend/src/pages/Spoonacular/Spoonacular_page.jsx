@@ -1,10 +1,11 @@
 import React from 'react'
+import SpoonacularSearch from '../../components/Spoonacular/RecipeSearch'
 
 function Spoonacular_page() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <SpoonacularSearch />
+    </>
   )
 }
 

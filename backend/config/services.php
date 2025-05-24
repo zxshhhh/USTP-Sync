@@ -35,16 +35,26 @@ return [
         ],
     ],
 
+    'spoonacular' => [
+        'api_key' => env('SPOONACULAR_API_KEY'),
+        'username' => env('SPOONACULAR_USERNAME'),
+        'hash' => env('SPOONACULAR_HASH'),
+    ],
+
+    'openweather' => [
+        'key' => env('OPENWEATHER_API_KEY'),
+    ],
+
     'fitbit' => [
         'client_id' => env('FITBIT_CLIENT_ID'),
         'client_secret' => env('FITBIT_CLIENT_SECRET'),
         'redirect' => env('FITBIT_REDIRECT_URI'),
     ],
-    
-    'spotify' => [
-        'client_id' => env('SPOTIFY_CLIENT_ID'),
-        'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
-        'redirect' => env('SPOTIFY_REDIRECT_URI'),
+
+    'nylas' => [
+        'client_id' => env('NYLAS_CLIENT_ID'),
+        'client_secret' => env('NYLAS_CLIENT_SECRET'),
+        'redirect_uri' => env('NYLAS_REDIRECT_URI'),
     ],
 
 ];

@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import MainPage from './pages/Main/Main_page'
+import SpoonacularPage from './pages/Spoonacular/Spoonacular_page'
+import FitbitPage from './pages/Fitbit/Fitbit_page'
+import CalendarPage from './components/CalendarPage';
+import OpenWeather from './pages/OpenWeatherMap/OpenWeather_page'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/Spoonacular" element={<SpoonacularPage />} />
+        <Route path='/Fitbit' element={<FitbitPage />}/>
+        <Route path='/Google' element={<CalendarPage />}/>
+        <Route path='/OpenWeather' element={<OpenWeather />}/>
+      </Routes>
+    </Router>
     </>
-  )
+   )
 }
 
 export default App

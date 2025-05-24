@@ -1,10 +1,11 @@
 import React from 'react'
+import WeatherApp from '../../components/OpenWeatherMap/OpenWeather'
 
 function OpenWeather_page() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <WeatherApp />
+    </>
   )
 }
 
