@@ -1,7 +1,8 @@
-import React from 'react'
 import WeatherApp from '../../components/OpenWeatherMap/OpenWeather'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function OpenWeather_page() {
+function OpenWeatherPage() {
   return (
     <>
       <WeatherApp />
@@ -9,4 +10,4 @@ function OpenWeather_page() {
   )
 }
 
-export default OpenWeather_page
+export default OpenWeatherPage;
