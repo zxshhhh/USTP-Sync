@@ -56,5 +56,10 @@ return [
         'client_secret' => env('NYLAS_CLIENT_SECRET'),
         'redirect_uri' => env('NYLAS_REDIRECT_URI'),
     ],
+    
+    'audius' => [
+        'base_url' => env('AUDIUS_BASE_URL', 'https://discoveryprovider.audiuscdn.co/v1'),
+        'app_name' => env('AUDIUS_APP_NAME', 'audius-laravel-app'),
+    ],
 
 ];

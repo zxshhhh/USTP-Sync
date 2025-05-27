@@ -9,6 +9,7 @@ use App\Http\Controllers\NylasController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AudiusController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -46,3 +47,10 @@ Route::get('/fitbit/steps', [FitbitController::class, 'getSteps']);
 Route::get('/fitbit/sleep', [FitbitController::class, 'getSleep']);
 Route::get('/fitbit/heartrate', [FitbitController::class, 'getHeartRate']);
 Route::get('/fitbit/calories', [FitbitController::class, 'getCalories']);
+
+Route::get('/trending', [AudiusController::class, 'trending']);
+Route::get('/search/{query}', [AudiusController::class, 'search']);
+Route::get('/play', [AudiusController::class, 'play']);
+Route::get('/pause', [AudiusController::class, 'pause']);
+Route::get('/skip', [AudiusController::class, 'skip']);
+
