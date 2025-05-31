@@ -1,43 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GoogleLoginButton from '../components/Google/GoogleLoginButton';
+import api from '../api/axios';
 
-const LoginPage = ({ onLoginSuccess, user }) => {
-    const navigate = useNavigate();
-    const [loginMessage, setLoginMessage] = useState(''); // State for messages
+export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    // Effect to check if user is already logged in or if login was successful
-    useEffect(() => {
-        if (user) {
-            // If user object exists (meaning logged in), redirect to home page
-            navigate('/');
-        }
-    }, [user, navigate]); // Rerun when 'user' or 'navigate' changes
+    const handleLogin = async (e) => {
+    e.preventDefault();
 
-    const handleGoogleLoginSuccess = (userData) => {
-        onLoginSuccess(userData); // Update the user state in App.js
-        setLoginMessage('Login successful! Redirecting...');
-        // The useEffect above will handle the redirection after setUser
+    try {
+        // 1. Get CSRF cookie
+        await api.get('/sanctum/csrf-cookie');
+
+        // 2. Post login
+        const response = await api.post('/api/login', {
+        email,
+        password,
+        });
+
+        localStorage.setItem('token', response.data.access_token);
+
+        alert('Login successful!');
+        navigate('/Mainpage');
+    } catch (error) {
+        console.error('Login failed:', error.response);
+        alert('Login failed!');
+    }
     };
 
-    const handleGoogleLoginFailure = (errorMessage) => {
-        setLoginMessage('Login failed: ' + errorMessage);
-    };
-
-    return (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-            <h1>Welcome to Your System</h1>
-            <p>{loginMessage}</p>
-            {!user ? ( // Only show button if user is not logged in
-                <GoogleLoginButton
-                    onLoginSuccess={handleGoogleLoginSuccess}
-                    onLoginFailure={handleGoogleLoginFailure}
-                />
-            ) : (
-                <p>You are already logged in. Redirecting...</p>
-            )}
-        </div>
-    );
-};
-
-export default LoginPage;
+  return (
+    <form onSubmit={handleLogin}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      /><br />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      /><br />
+      <button type="submit">Login</button>
+    </form>
+  );
+}

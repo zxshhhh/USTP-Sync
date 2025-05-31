@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use App\Services\FitbitService;
 
 class FitbitController extends Controller
@@ -18,10 +19,10 @@ class FitbitController extends Controller
     public function redirect()
     {
         $query = http_build_query([
-            'client_id' => env('FITBIT_CLIENT_ID'),
+            'client_id' => config('services.fitbit.client_id'),
             'response_type' => 'code',
             'scope' => 'activity heartrate sleep profile',
-            'redirect_uri' => env('FITBIT_REDIRECT_URI'),
+            'redirect_uri' => config('services.fitbit.redirect_uri'),
         ]);
 
         return redirect("https://www.fitbit.com/oauth2/authorize?{$query}");
@@ -29,12 +30,20 @@ class FitbitController extends Controller
 
     public function callback(Request $request)
     {
+        $clientId = config('services.fitbit.client_id');
+        $clientSecret = config('services.fitbit.client_secret');
+        $redirectUri = config('services.fitbit.redirect_uri');
+
+        if (!$clientId || !$clientSecret) {
+            return response()->json(['error' => 'Fitbit credentials not configured'], 500);
+        }
+
         $response = Http::asForm()
-            ->withBasicAuth(env('FITBIT_CLIENT_ID'), env('FITBIT_CLIENT_SECRET'))
+            ->withBasicAuth($clientId, $clientSecret)
             ->post('https://api.fitbit.com/oauth2/token', [
                 'grant_type' => 'authorization_code',
                 'code' => $request->code,
-                'redirect_uri' => env('FITBIT_REDIRECT_URI'),
+                'redirect_uri' => $redirectUri,
             ]);
 
         $data = $response->json();

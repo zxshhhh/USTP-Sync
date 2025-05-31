@@ -49,7 +49,7 @@ return [
     'fitbit' => [
         'client_id' => env('FITBIT_CLIENT_ID'),
         'client_secret' => env('FITBIT_CLIENT_SECRET'),
-        'redirect' => env('FITBIT_REDIRECT_URI'),
+        'redirect_uri' => env('FITBIT_REDIRECT_URI'),
     ],
 
     'google' => [

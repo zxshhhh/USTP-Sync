@@ -1,23 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Main_page.css'
 import Background from '../../components/background_gradient'
 import video from '../../assets/video/video1.mp4'
 import Header from '../../components/MainHeader/header'
+import api from '../../api/axios'
 
-function Main_page({ user, onLogout }) {
+function Main_page() {
   const navigate = useNavigate();
-  useEffect(() => {
-      // If no user (not logged in), redirect to login page
-      if (!user) {
-          navigate('/login');
-      }
-  }, [user, navigate]);
+  const [profile, setProfile] = useState(null);
 
-  if (!user) {
-      // Render nothing or a loading spinner while redirecting
-      return <p>Redirecting to login...</p>;
-  }
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        await api.get('/sanctum/csrf-cookie');
+        const res = await api.get('/api/profile');
+        setProfile(res.data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        alert('401 error. Check cookies and login session.');
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (!profile) return <p>Loading...</p>;
 
   const handleClickSpoonacular = () => {
     navigate('/Spoonacular');
@@ -43,13 +51,9 @@ function Main_page({ user, onLogout }) {
     <main>
       <Background />
       <Header />
-      <div className='googleinfo'>
-        <h1>Hello, {user.name}!</h1>
-        <p>Welcome to your system's main page.</p>
-        <p>Your email: {user.email}</p>
-        <button className='logout-button' onClick={onLogout}>
-          Logout
-        </button>
+      <div className='user-profile'>
+        <h2>Welcome, {profile.name}</h2>
+        <p>Email: {profile.email}</p>
       </div>
       <section className='main-page-content'>
         <div id='#Home' className='introduction-section'>

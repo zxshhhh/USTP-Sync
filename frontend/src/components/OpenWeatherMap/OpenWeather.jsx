@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentWeather, getForecast } from '../../api/weather'
+import api from '../../api/axios'
 
 function OpenWeather() {
   const [city, setCity] = useState('');
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
-
   const navigate = useNavigate();
 
   const handleClickMainPage = () => {
-    navigate('/');
+    navigate('/Mainpage');
   };
 
   const fetchWeather = async () => {

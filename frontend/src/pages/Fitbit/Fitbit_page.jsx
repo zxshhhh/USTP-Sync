@@ -20,7 +20,7 @@ function Fitbit_page() {
   const navigate = useNavigate();
 
   const handleClickMainPage = () => {
-    navigate('/');
+    navigate('/Mainpage');
   };
 
   const [activeSection, setActiveSection] = useState(null); // Tracks which button was clicked

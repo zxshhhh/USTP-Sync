@@ -1,19 +1,23 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api', // Your Laravel API URL
+  baseURL: 'http://localhost:8000', // update to your backend URL
   headers: {
+    Accept: 'application/json',
     'Content-Type': 'application/json',
   },
 });
 
-// Automatically inject token
-api.interceptors.request.use(config => {
-  const token = localStorage.getItem('auth_token'); // Store your token after login
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+// Attach token to all outgoing requests
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token'); // Get token from storage
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default api;

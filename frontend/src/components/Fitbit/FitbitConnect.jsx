@@ -1,4 +1,3 @@
-// src/components/FitbitConnect.jsx
 import React from 'react';
 
 const FitbitConnect = () => {

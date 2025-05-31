@@ -16,7 +16,7 @@ export default function RecipeSearch() {
   const navigate = useNavigate();
 
   const handleClickMainPage = () => {
-    navigate('/');
+    navigate('/Mainpage');
   };
 
   const handleSearch = async () => {
