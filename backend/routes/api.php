@@ -1,43 +1,32 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpoonacularController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\FitbitController;
-use App\Http\Controllers\NylasController;
-use App\Http\Controllers\Auth\GoogleAuthController;
-use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AudiusController;
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\WorkoutPlannerController;
+use App\Http\Controllers\NutritionAdviceController;
+use App\Http\Controllers\ExerciseDetailsController;
+use App\Http\Controllers\CustomWorkoutPlanController;
+use App\Http\Controllers\FoodPlateAnalyzerController;
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
+// ============================= Google Account Login API routes
+Route::post('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 // ============================= Spoonacular API routes
 Route::get('/recipes/search', [SpoonacularController::class, 'search']);
+Route::post('/recipes/search', [SpoonacularController::class, 'search']);
 Route::get('/recipes/{id}', [SpoonacularController::class, 'getRecipe']);
 Route::get('/ingredients/autocomplete', [SpoonacularController::class, 'autocomplete']);
+Route::post('/ingredients/autocomplete', [SpoonacularController::class, 'autocomplete']);
 
+// ============================= OpenWeather API routes
 Route::get('/weather/current', [WeatherController::class, 'current']);
+Route::post('/weather/current', [WeatherController::class, 'current']);
 Route::get('/weather/forecast', [WeatherController::class, 'forecast']);
-
-Route::post('/login', [LoginController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
-
-// Authentication routes (might be part of your existing auth system)
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
-
-    // Calendar routes
-    Route::get('/calendar/events', [CalendarController::class, 'index']);
-    Route::post('/calendar/events', [CalendarController::class, 'store']);
-    Route::put('/calendar/events/{eventId}', [CalendarController::class, 'update']);
-    Route::delete('/calendar/events/{eventId}', [CalendarController::class, 'destroy']);
-});
-
-Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+Route::post('/weather/forecast', [WeatherController::class, 'forecast']);
 
 // ============================= Fitbit API routes
 Route::get('/fitbit/redirect', [FitbitController::class, 'redirect']);
@@ -54,3 +43,8 @@ Route::get('/play', [AudiusController::class, 'play']);
 Route::get('/pause', [AudiusController::class, 'pause']);
 Route::get('/skip', [AudiusController::class, 'skip']);
 
+Route::post('/generate-workout-plan', [WorkoutPlannerController::class, 'generateWorkoutPlan']);
+Route::post('/nutrition-advice', [NutritionAdviceController::class, 'getNutritionAdvice']);
+Route::post('/exercise-details', [ExerciseDetailsController::class, 'getExerciseDetails']);
+Route::post('/custom-workout-plan', [CustomWorkoutPlanController::class, 'generateCustomWorkoutPlan']);
+Route::post('/analyze-food-plate', [FoodPlateAnalyzerController::class, 'analyze']);

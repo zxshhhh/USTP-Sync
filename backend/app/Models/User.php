@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
         'google_token_expires_at', // Add any custom columns
     ];
 

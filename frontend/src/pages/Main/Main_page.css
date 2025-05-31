@@ -3,6 +3,16 @@
     transition: all 0.2s ease-in-out;
 }
 
+.googleinfo {
+    position: relative;
+    color: white;
+    top: 130px;
+}
+
+.logout-button {
+    color: black;
+}
+
 .main-page-content {
     margin-top: 10%;
 }

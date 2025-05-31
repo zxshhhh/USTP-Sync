@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('google_id')->nullable();
             $table->string('password');
             $table->timestamp('google_token_expires_at')->nullable();
             $table->timestamps();

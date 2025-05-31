@@ -1,12 +1,23 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Main_page.css'
 import Background from '../../components/background_gradient'
 import video from '../../assets/video/video1.mp4'
 import Header from '../../components/MainHeader/header'
 
-function Main_page() {
+function Main_page({ user, onLogout }) {
   const navigate = useNavigate();
+  useEffect(() => {
+      // If no user (not logged in), redirect to login page
+      if (!user) {
+          navigate('/login');
+      }
+  }, [user, navigate]);
+
+  if (!user) {
+      // Render nothing or a loading spinner while redirecting
+      return <p>Redirecting to login...</p>;
+  }
 
   const handleClickSpoonacular = () => {
     navigate('/Spoonacular');
@@ -17,7 +28,7 @@ function Main_page() {
   };
 
   const handleClickGooglePage = () => {
-    navigate('/Google');
+    navigate('/GoogleCalendar');
   };
 
   const handleClickOpenWeather = () => {
@@ -32,6 +43,14 @@ function Main_page() {
     <main>
       <Background />
       <Header />
+      <div className='googleinfo'>
+        <h1>Hello, {user.name}!</h1>
+        <p>Welcome to your system's main page.</p>
+        <p>Your email: {user.email}</p>
+        <button className='logout-button' onClick={onLogout}>
+          Logout
+        </button>
+      </div>
       <section className='main-page-content'>
         <div id='#Home' className='introduction-section'>
           <article>
@@ -62,7 +81,7 @@ function Main_page() {
             </section>
             <section className='botcard-container'>
               <div className='botcard'>Promotes a proactive, supportive student culture</div>
-              <div className='botcard'>card5</div>
+              <div className='botcard'>=========================</div>
             </section>
           </section>
         </div>
