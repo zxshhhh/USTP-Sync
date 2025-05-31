@@ -39,6 +39,7 @@ return [
         'api_key' => env('SPOONACULAR_API_KEY'),
         'username' => env('SPOONACULAR_USERNAME'),
         'hash' => env('SPOONACULAR_HASH'),
+        'spoon_url' => env('SPOONACULAR_BASE_URL'),
     ],
 
     'openweather' => [
@@ -60,6 +61,16 @@ return [
     'audius' => [
         'base_url' => env('AUDIUS_BASE_URL', 'https://discoveryprovider.audiuscdn.co/v1'),
         'app_name' => env('AUDIUS_APP_NAME', 'audius-laravel-app'),
+    ],
+
+    'rapidapi' => [
+        'host' => env('RAPIDAPI_HOST'),
+        'key' => env('RAPIDAPI_KEY'),
+        'workout_url' => env('RAPIDAPI_WORKOUT_URL'),
+        'nutrition_url' => env('RAPIDAPI_NUTRITION_URL'),
+        'exercise_details_url' => env('RAPIDAPI_EXERCISE_URL'),
+        'custom_workout_url' => env('RAPIDAPI_CUSTOMW_URL'),
+        'analyze_food_url' => env('RAPIDAPI_FOOD_URL'),
     ],
 
 ];

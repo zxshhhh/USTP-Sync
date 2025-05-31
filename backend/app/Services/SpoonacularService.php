@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class SpoonacularService
 {
-    protected $baseUrl = 'https://api.spoonacular.com';
+    protected $baseUrl = config('services.spoonacular.spoon_url');
     protected $apiKey;
 
     public function __construct()
